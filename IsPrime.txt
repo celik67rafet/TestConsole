@@ -1,0 +1,42 @@
+int inputNumber;
+bool isPrime;
+
+while(true){
+
+    Console.Clear();
+
+    isPrime = true;
+
+    Console.WriteLine("Sayı Gir: ");
+    
+    string inputText = Console.ReadLine();
+    
+    if(int.TryParse(inputText, out inputNumber)){
+
+        if(inputNumber <= 1){
+            isPrime = false;
+        }
+        else{
+            
+            for(int i = 2; i <= Math.Sqrt(inputNumber); i++){
+
+                if(inputNumber % i == 0){
+                    isPrime = false;
+                    break;
+                }
+
+            }
+        }
+
+        Console.WriteLine($"{inputNumber}'sayısı asal mı? : {(isPrime ? "Evet":"Hayır")}");
+
+    }else{
+
+        Console.WriteLine("Geçerli Bir Sayı Giriniz!");
+        
+    }
+
+        Console.WriteLine("\nDevam etmek için enter...");
+
+    Console.ReadLine();
+}

@@ -1,0 +1,14 @@
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Debug\net8.0\TestConsole.exe
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Debug\net8.0\TestConsole.deps.json
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Debug\net8.0\TestConsole.runtimeconfig.json
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Debug\net8.0\TestConsole.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Debug\net8.0\TestConsole.pdb
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.AssemblyInfoInputs.cache
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.AssemblyInfo.cs
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.csproj.CoreCompileInputs.cache
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\refint\TestConsole.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.pdb
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\TestConsole.genruntimeconfig.cache
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Debug\net8.0\ref\TestConsole.dll

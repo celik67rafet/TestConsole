@@ -1,0 +1,2 @@
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\publish\TestConsole.pdb
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\publish\TestConsole.exe

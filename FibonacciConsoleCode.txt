@@ -1,0 +1,40 @@
+
+	using System.Numerics;
+Console.Title = "Fibonacci Piramidi";
+while (true){
+        Console.Clear();
+    
+        Console.Write("Fibonacci piramidinin kaç satır olmasını istiyorsunuz?: ");
+        int rows = int.Parse(Console.ReadLine());
+
+        BigInteger a = 0, b = 1, temp;
+        int currentNumberCount = 1;
+
+        Console.WriteLine("Fibonacci Piramidi:");
+        for (int i = 1; i <= rows; i++)
+        {
+            // Satırın başındaki boşlukları yazdırarak ortalama
+            Console.Write(new string(' ', (rows - i) * 6));
+
+            for (int j = 0; j < currentNumberCount; j++)
+            {
+                Console.Write(a.ToString().PadLeft(12));
+                temp = a;
+                a = b;
+                b = temp + b;
+            }
+
+            currentNumberCount++;
+            Console.WriteLine(); // Bir sonraki satıra geç
+        }
+        if( rows >= 7 ){
+    
+            Console.WriteLine($"{new string('-',rows*12)}");
+
+        }else{
+            Console.WriteLine($"{new string('-',rows*14)}");
+        }
+    Console.WriteLine("Press Any Key...");
+    Console.ReadLine();
+}
+

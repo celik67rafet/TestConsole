@@ -1,0 +1,46 @@
+﻿using System.Diagnostics;
+
+int inputNumber;
+Console.Title = "Fibonacci Counter";
+Console.ForegroundColor = ConsoleColor.Red;
+Stopwatch stopwatch = new Stopwatch();
+
+while(true){
+
+
+    Console.Write("Fibonacci serisinin kaç terimini görmek istersiniz: ");
+    string inputText = Console.ReadLine();
+
+    if( int.TryParse( inputText, out inputNumber ) ){
+
+        stopwatch.Start();
+
+        for( int i = 0; i < inputNumber; i++ ){
+
+            Console.WriteLine( + (i + 1) + " )  " + Fibonacci(i) + " " );
+
+        }
+            stopwatch.Stop();
+            TimeSpan elapsed = stopwatch.Elapsed;
+
+            Console.WriteLine("=======================================");
+            Console.WriteLine($" || {elapsed.Hours} Saat : {elapsed.Minutes} Dakika : {elapsed.Seconds} Saniye : {elapsed.Milliseconds} MiliSaniye || Sürede Hesaplandı.");
+
+    }else{
+        Console.WriteLine("Girilen Değer Tam Sayı Olmalı!");
+    }
+
+}
+
+static int Fibonacci(int count){
+
+    if( count <= 1 ){
+
+        return count;
+
+    }else{
+
+        return Fibonacci( count - 1 ) + Fibonacci( count - 2 );
+    }
+
+}
