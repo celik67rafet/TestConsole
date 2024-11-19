@@ -1,0 +1,77 @@
+Console.BackgroundColor = ConsoleColor.Black;
+Console.ForegroundColor = ConsoleColor.Green;
+Console.Title = "Array Bubble Sort";
+
+int[] array = new int[0];
+
+while(true){
+
+    while(true){
+
+        Console.Clear();
+
+        Console.WriteLine($"Güncel Array:[ {string.Join(" , " , array)} ]\n\n");
+
+        Console.Write("Dizi Oluşturmak İçin Sayı Girin: ");
+
+        // int[] beforeArray = array; // eğer böyle yaparsak bellekte aynı yeri tutarlar ikisi de aynı değeri alır. 
+
+        string numberString = Console.ReadLine();
+
+        if( int.TryParse( numberString, out int number ) ){
+
+            Array.Resize( ref array, array.Length + 1 );
+
+            array[array.Length - 1] = number;
+
+        }else{
+
+            Console.Clear();
+            Console.WriteLine("Geçersiz Bir Değer! Tam Sayı Giriniz..\n\n");
+        }
+
+        Console.Write("\n\nDevam Etmek İçin 'Enter' Ya Da Array Tamamlandıysa 'ESC' Tuşlayınız...");
+
+        var key = Console.ReadKey(true);
+
+        if( key.Key == ConsoleKey.Escape ){
+            
+            break;
+        }
+        Console.WriteLine();
+    
+    }
+
+    Console.Clear();
+    
+    int[] beforeArray = (int[])array.Clone(); // bu şekilde kopyalarsak ikisi farklı array olur, bellekte aynı yeri tutmaz
+
+    BubbleSort( array );
+
+    Console.WriteLine( $"Before: [ {string.Join(" , ",beforeArray)} ] || After: [ {string.Join(" , ", array)} ]\n\n\n" );
+
+    Console.WriteLine("Devam Etmek İçin 'Enter' Tuşlayınız...");
+
+    Console.ReadLine();
+
+}
+
+
+static void BubbleSort(int[] arr)
+    {
+        int temp;
+
+        for (int j = 0; j < arr.Length - 1; j++)
+        {
+            for (int i = 0; i < arr.Length - 1 - j; i++)
+            {
+                if (arr[i] > arr[i + 1])
+                {
+                    temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+            }
+        }
+    }
+

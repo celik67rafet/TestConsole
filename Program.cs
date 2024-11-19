@@ -1,46 +1,148 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json.Linq;
+using System.Globalization;
 
-int inputNumber;
-Console.Title = "Fibonacci Counter";
-Console.ForegroundColor = ConsoleColor.Red;
-Stopwatch stopwatch = new Stopwatch();
+string locServUrl = "https://ipinfo.io/json";
+
+Console.Title = "Today's Info";
+Console.BackgroundColor = ConsoleColor.Black;
+Console.ForegroundColor = ConsoleColor.Green;
 
 while(true){
 
+    Console.Clear();
 
-    Console.Write("Fibonacci serisinin kaç terimini görmek istersiniz: ");
-    string inputText = Console.ReadLine();
+    DateTime now = DateTime.Now;
 
-    if( int.TryParse( inputText, out inputNumber ) ){
+    var location = await FetchAndPrintLocationInfo(locServUrl);
 
-        stopwatch.Start();
+    if( location != null ){
 
-        for( int i = 0; i < inputNumber; i++ ){
+        double longitude = location.Longitude;
+        double latitude = location.Latitude;
+        string city = location.City;
+        string country = location.Country;
 
-            Console.WriteLine( + (i + 1) + " )  " + Fibonacci(i) + " " );
+        var weatherView = await FetchAndPrintWeatherInfo(latitude,longitude);
 
+        if( weatherView != null ){
+
+            List<string> lines = new List<string>
+            {
+                $"Sıcaklık: {weatherView.Temperature} *C",
+                $"Rüzgar: {weatherView.Wind} m/s",
+                $"Şehir: {city}",
+                $"Ülke: {country}",
+                "Tarih: " + now.ToShortDateString(),
+                "Saat: " + now.ToShortTimeString()
+            };
+
+            int maxLength = lines.Max( line => line.Length );
+
+            int maxWith = lines.Max( line => line.Length );
+
+            Console.WindowWidth = Math.Min( maxWith + 20, Console.LargestWindowWidth );
+
+            Console.WindowHeight = Math.Min( lines.Count +10, Console.LargestWindowHeight );
+
+            string seperator = new string('-',maxLength);
+
+            Console.WriteLine(seperator);
+
+            foreach( var line in lines ){
+
+                Console.WriteLine(line);
+            }
+ 
+            Console.WriteLine(seperator);
+
+        }else{
+
+            Console.WriteLine("Bir Sorun var, cevap null geldi: "+ weatherView);
         }
-            stopwatch.Stop();
-            TimeSpan elapsed = stopwatch.Elapsed;
-
-            Console.WriteLine("=======================================");
-            Console.WriteLine($" || {elapsed.Hours} Saat : {elapsed.Minutes} Dakika : {elapsed.Seconds} Saniye : {elapsed.Milliseconds} MiliSaniye || Sürede Hesaplandı.");
 
     }else{
-        Console.WriteLine("Girilen Değer Tam Sayı Olmalı!");
+
+        Console.Clear();
+
+        Console.WriteLine("Bilgi Alınamadı Bağlantı Hatası!");
+
     }
+
+    Thread.Sleep(60000);
 
 }
 
-static int Fibonacci(int count){
+static async Task<WeatherView> FetchAndPrintWeatherInfo( double latitude,double longitude )
+{
+    string url = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid=bda191da6dc316eff1c2544881ebca63&units=metric";
 
-    if( count <= 1 ){
+    using ( HttpClient client = new HttpClient() ){
 
-        return count;
+        try{
 
-    }else{
+            HttpResponseMessage response = await client.GetAsync(url);
 
-        return Fibonacci( count - 1 ) + Fibonacci( count - 2 );
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            JObject weatherData = JObject.Parse(json);
+
+            double temp = (double)weatherData["main"]["temp"];
+            double windSpeed = (double)weatherData["wind"]["speed"];
+
+            return new WeatherView{
+
+                Temperature = temp,
+                Wind = windSpeed
+
+            };
+
+        }catch( Exception ex ){
+
+            Console.WriteLine("Bağlantı Hatası!",ex);
+
+            return null;
+        }
+
+    }
+}
+
+static async Task<LocationInfo> FetchAndPrintLocationInfo(string url)
+{
+
+    using ( HttpClient client = new HttpClient() ){
+
+        try{
+
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            JObject ipInfo = JObject.Parse(json);
+
+            string city = (string)ipInfo["city"];
+            string country = (string)ipInfo["country"];
+            string coords = (string)ipInfo["loc"];
+            string[] coordsArr = coords.Split(',');
+            double latitude = double.Parse(coordsArr[0], CultureInfo.InvariantCulture);
+            double longitude = double.Parse(coordsArr[1], CultureInfo.InvariantCulture);
+
+            return new LocationInfo{
+                City = city,
+                Country = country,
+                Latitude = latitude,
+                Longitude = longitude
+            };
+
+        }catch( Exception ex ){
+
+            Console.WriteLine("Konum: ", ex.Message);
+            return null;
+        }
+
     }
 
 }

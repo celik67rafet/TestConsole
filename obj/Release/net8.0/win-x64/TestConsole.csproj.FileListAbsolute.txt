@@ -181,7 +181,6 @@ C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\created
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\hostfxr.dll
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\hostpolicy.dll
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\mscordaccore.dll
-C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\mscordaccore_amd64_amd64_8.0.624.26715.dll
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\mscordbi.dll
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\mscorrc.dll
 C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\msquic.dll
@@ -195,3 +194,7 @@ C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\refint\
 C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\TestConsole.pdb
 C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\TestConsole.genruntimeconfig.cache
 C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\ref\TestConsole.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\mscordaccore_amd64_amd64_8.0.1124.51707.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\TestConsole.sourcelink.json
+C:\Users\rafetc\Documents\WFolder\TestConsole\bin\Release\net8.0\win-x64\Newtonsoft.Json.dll
+C:\Users\rafetc\Documents\WFolder\TestConsole\obj\Release\net8.0\win-x64\TestConsole.csproj.AssemblyReference.cache
