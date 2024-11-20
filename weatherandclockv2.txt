@@ -9,6 +9,8 @@ Console.ForegroundColor = ConsoleColor.Green;
 
 while(true){
 
+    Console.Clear();
+
     DateTime now = DateTime.Now;
 
     var location = await FetchAndPrintLocationInfo(locServUrl);

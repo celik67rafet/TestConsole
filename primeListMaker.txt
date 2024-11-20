@@ -1,0 +1,52 @@
+int countNumber;
+Console.Title = "Asal Sayı Listesi";
+while (true)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.Write("Limit Sayı Girin : ");
+    string inputAsString = Console.ReadLine();
+
+    if (int.TryParse(inputAsString, out countNumber))
+    {
+        int[] primesArray = FindPrimes(countNumber);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Asal Sayılar: [ " + string.Join(" , ", primesArray) + " ]");
+    }
+}
+
+static int[] FindPrimes(int n)
+{
+    // Asal kontrolü için bir bool dizisi
+    bool[] isPrime = new bool[n + 1];
+
+    // Başlangıçta tüm sayıları asal olarak varsayalım
+    for (int i = 2; i <= n; i++)
+    {
+        isPrime[i] = true;
+    }
+
+    // Sieve of Eratosthenes
+    for (int p = 2; p * p <= n; p++)
+    {
+        if (isPrime[p])
+        {
+            for (int i = p * p; i <= n; i += p)
+            {
+                isPrime[i] = false;
+            }
+        }
+    }
+
+    // Asal sayıları bir listeye ekle
+    List<int> primesList = new List<int>();
+    for (int i = 2; i <= n; i++)
+    {
+        if (isPrime[i])
+        {
+            primesList.Add(i);
+        }
+    }
+
+    // Listeyi bir diziye çevir ve döndür
+    return primesList.ToArray();
+}

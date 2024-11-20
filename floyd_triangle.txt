@@ -1,0 +1,36 @@
+int rows;
+
+int begin = 1;
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.BackgroundColor = ConsoleColor.Black;
+Console.Title = "Floyd Triange";
+
+while(true){
+    begin = 1;
+    Console.Clear();
+    Console.Write("Üçgen Satır Sayısı: ");
+
+    string inputAsString = Console.ReadLine();
+
+    if( int.TryParse( inputAsString, out rows ) )
+    {
+        Console.WriteLine("dönüştü");
+
+        for( int i = 1; i <= rows; i++ ){
+            
+            for( int j = 1; j <= i; j++ ){
+                Console.Write(begin + " ");
+                begin++;
+            }
+        Console.WriteLine();
+        }
+    }else{
+        Console.Clear();
+        Console.WriteLine("Tam Sayı Giriniz...");
+    }
+
+    Console.WriteLine("\n\nDevam etmek için bir tuşa basınız...");
+    Console.ReadLine();
+
+}
